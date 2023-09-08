@@ -3,12 +3,13 @@ package mypets.pets;
 import java.util.Random;
 
 public abstract class Pet {
-	private String name;
-	private Integer happiness;
-	private String color;
-	private String type;
 	
-	private Random rand = new Random();
+	protected String name;
+	protected Integer happiness;
+	protected String color;
+	protected String type;
+	
+	protected Random rand = new Random();
 	
 	public String getName() {
 		return name;
@@ -41,9 +42,23 @@ public abstract class Pet {
 	
 	public Integer pet() {
 		
+		System.out.println(String.format("%s is playing", this.name));
+		
 		Integer gainedHappiness = this.rand.nextInt(3) + 1; // 1-3
 		this.happiness += gainedHappiness;
 		return (gainedHappiness);
 	}
+	
+	public int goForWalk() {
+		
+		System.out.println(String.format("%s is going for a walk", this.name));
+		
+		Integer gainedHappiness = this.rand.nextInt(5) - 1; // -1 to 3
+		this.happiness += gainedHappiness;
+		return (gainedHappiness);
+		
+	}
+	
+	
 	
 }

@@ -6,6 +6,7 @@ import mypets.pets.Pet;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import mypets.interfaces.Talk;
 import mypets.pets.DinkyDoggie;
 import mypets.pets.PollyParrot;
 
@@ -21,7 +22,7 @@ public class App {
 				new PollyParrot("Fred", 100, "multi-color", "chef hat")
 				));
 		
-		Pet currentPet = pets.get(0);
+		Pet currentPet = pets.get(1);
 		
 		boolean inPlay = true;
 		
@@ -66,6 +67,40 @@ public class App {
 							currentPet = pet;
 						}
 					}
+					
+					break;
+					
+				case "go for walk":
+					
+		        	comm.outputLine(
+		        			String.format("%s gained %d happiness. They now have %d happiness.", 
+			        			currentPet.getName(), 
+			        			currentPet.goForWalk(),
+			        			currentPet.getHappiness()
+			        			)
+		        			);
+					
+					break;
+					
+				case "speak":
+					
+					Integer gainedHappiness= 0;
+					
+					try {
+						gainedHappiness = ((Talk) currentPet).speak();
+					}
+					catch(Exception e) {
+						comm.outputLine("This Pet can't talk;");
+						break;
+					}
+					
+		        	comm.outputLine(
+		        			String.format("%s gained %d happiness. They now have %d happiness.", 
+			        			currentPet.getName(), 
+			        			gainedHappiness,
+			        			currentPet.getHappiness()
+			        			)
+		        			);
 					
 					break;
 					
